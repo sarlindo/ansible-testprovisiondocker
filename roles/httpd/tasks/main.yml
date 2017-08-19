@@ -1,0 +1,12 @@
+---
+- name: install apache, mod wsgi
+  yum: name={{ item }} state=present
+  with_items:
+    - httpd
+    - mod_wsgi
+
+- name: Copy the apache config
+  template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
+
+- name: Make httpd logs readable
+  file: path=/var/log/httpd mode=u=rwX,g=rX,o=rX recurse=yes

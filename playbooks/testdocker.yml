@@ -1,0 +1,10 @@
+- name: Bring up docker containers for inventory
+  hosts: localhost
+  roles:
+    - role: provision_docker
+      provision_docker_inventory_group: "{{ groups['testservers'] }}"
+
+- name: Run tests for docker connection
+  hosts: docker_containers:testservers
+  roles:
+    - httpd

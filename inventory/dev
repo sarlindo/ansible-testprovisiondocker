@@ -1,0 +1,11 @@
+localhost ansible_connection=local
+
+[testservers]
+test1 image="chrismeyers/centos7"
+
+[local]
+localhost
+
+[dev:children]
+testservers
+local
